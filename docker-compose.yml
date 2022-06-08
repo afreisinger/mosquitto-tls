@@ -1,0 +1,42 @@
+version: '3.5'
+
+services:
+  mosquitto:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - MOSQUITTO_VERSION=${MOSQUITTO_VERSION:-latest}
+
+    environment:
+      - MOSQUITTO_USERNAME=${MOSQUITTO_USERNAME}
+      - MOSQUITTO_PASSWORD=${MOSQUITTO_PASSWORD}
+    
+    image: eclipse-mosquitto:${MOSQUITTO_VERSION:-latest} #This is a way to force Mosquitto version via env variable, by default latest will be used, check compose file specification to be sure. (https://docs.docker.com/compose/compose-file/#interpolation)
+    container_name: mosquitto
+    
+    networks:
+      - iot
+    
+    ports:
+      - '1883:1883'
+      - '8883:8883'
+
+    volumes:
+      - ./config:/mosquitto/config
+      - ./data:/mosquitto/data
+      - ./log:/mosquitto/log
+      #- mosquitto_data:/mosquitto/data 
+      #- mosquitto_config:/mosquitto/config
+      #- mosquitto_log:/mosquitto/log
+
+    restart: unless-stopped
+
+networks:
+  iot:
+
+#volumes:
+  #mosquitto_data:
+  #mosquitto_config:
+  #mosquitto_log:
+

@@ -1,0 +1,14 @@
+{
+  "name": "wsclient",
+  "version": "1.0.0",
+  "description": "Simple MQTT NodeJS Application",
+  "main": "wsclient.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrian Freisinger",
+  "license": "ISC",
+  "dependencies": {
+    "async-mqtt": "^2.6.2"
+  }
+}
