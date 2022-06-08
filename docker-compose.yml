@@ -13,7 +13,7 @@ services:
       - MOSQUITTO_PASSWORD=${MOSQUITTO_PASSWORD}
     
     image: eclipse-mosquitto:${MOSQUITTO_VERSION:-latest} #This is a way to force Mosquitto version via env variable, by default latest will be used, check compose file specification to be sure. (https://docs.docker.com/compose/compose-file/#interpolation)
-    container_name: mosquitto
+    container_name: mosquitto-tls
     
     networks:
       - iot
